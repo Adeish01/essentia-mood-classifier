@@ -21,7 +21,14 @@ class AnalysisResults {
 
     updateValueBoxes(essentiaAnalysis) {
         const stringBpm = essentiaAnalysis.bpm.toString();
-        const formattedBpm = stringBpm.slice(0, stringBpm.indexOf('.') + 2); // keep 1 decimal places only
+    
+        let formattedBpm;
+        if (stringBpm.includes('.')) {
+            formattedBpm = stringBpm.slice(0, stringBpm.indexOf('.') + 2); // Keep 1 decimal place
+        } else {
+            formattedBpm = stringBpm; // Keep whole number as is
+        }
+    
         this.bpmBox.textContent = formattedBpm;
         this.keyBox.textContent = `${essentiaAnalysis.keyData.key} ${essentiaAnalysis.keyData.scale}`;
     }
